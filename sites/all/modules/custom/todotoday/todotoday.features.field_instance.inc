@@ -40,8 +40,8 @@ function todotoday_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_due_date',
-    'label' => 'Due date',
-    'required' => FALSE,
+    'label' => 'Due',
+    'required' => 0,
     'settings' => array(
       'default_value' => 'now',
       'default_value2' => 'same',
@@ -50,6 +50,7 @@ function todotoday_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'date',
       'settings' => array(
         'display_all_day' => 0,
@@ -57,6 +58,7 @@ function todotoday_field_default_field_instances() {
         'input_format' => 'm/d/Y - H:i:s',
         'input_format_custom' => '',
         'label_position' => 'above',
+        'no_fieldset' => 0,
         'repeat_collapsed' => 0,
         'text_parts' => array(),
         'year_range' => '-3:+3',
@@ -109,7 +111,7 @@ function todotoday_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Due date');
+  t('Due');
   t('status');
 
   return $field_instances;
