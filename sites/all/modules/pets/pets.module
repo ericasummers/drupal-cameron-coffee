@@ -14,7 +14,7 @@
   function pet_pics() {
     return
       '<p>Hey, check out this crazy guy!</p>
-      <img src="/'.drupal_get_path('module', 'pets').'/kalgar.jpg" alt="Kalgar the puddle-drinker">';
-      // $result = drupal_get_path('module','pets');
-      // return $result;
+      <img src="/'.drupal_get_path('module', 'pets').'/kalgar.jpg" alt="Kalgar the puddle-drinker"><br>
+      <a href="https://en.wikipedia.org/wiki/Labrador_Retriever">Click here for more information about yellow labs!</a>';
+
   }

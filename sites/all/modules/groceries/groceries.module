@@ -1,0 +1,27 @@
+<?php
+function groceries_menu(){
+  $items['groceries'] = array(
+    'title' => "Get 'Dem Eggses",
+    'page callback' => 'get_groceries',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+};
+
+
+function get_groceries(){
+  $grocery_list['eggses'] = array('price'=>2.99,'amount'=>24);
+  $grocery_list['cabbages'] = array('price' => 3.45, 'amount'=>2);
+  $grocery_list['croissants'] = array('price' => 2.00, 'amount' => 3);
+  $grocery_list['almond milch'] = array('price' =>5.66, 'amount' => 1);
+  $string = '';
+  $array_length = sizeof($grocery_list);
+  foreach ($grocery_list as $individual_grocery => $grocery_item_subarray){
+    $string .= '<p>'.$individual_grocery.' costs'.$grocery_item_subarray['price'].'and we want '.$grocery_item_subarray['amount'].' which means we must pay $'.$grocery_item_subarray['price']*$grocery_item_subarray['amount'].'.</p>';
+    // foreach($grocery_list[$individual_grocery] as $grocery => $amount){
+    //   $string .= '<p>'.$amount.'</p>';
+    // }
+  }
+  return $string;
+};
