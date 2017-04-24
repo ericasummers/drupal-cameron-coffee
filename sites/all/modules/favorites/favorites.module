@@ -8,10 +8,11 @@ function favorites_menu() {
   );
 
 foreach ($an_array as $things => $values) {
+  $subarray = array($things, $values);
   $items['favorites/'.$things] = array(
     'title' => 'My favorite '.$things,
     'page callback' => 'my_favorites',
-    'page arguments' => array($values),
+    'page arguments' => array($subarray),
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
     );
@@ -23,8 +24,9 @@ foreach ($an_array as $things => $values) {
 
 function my_favorites($input) {
   $output = '';
-  foreach ($input as $key => $value) {
-    $output.= "some space ".$value." .";
+  $what_it_is = $input[0];
+  foreach ($input[1] as $key => $value) {
+    $output.= '<li>'.$value.'</li>';
   }
-  return $output;
+  return "<p>Here's some". $what_it_is. " I really like!</p><ul>".$output.'</ul>';
 }
