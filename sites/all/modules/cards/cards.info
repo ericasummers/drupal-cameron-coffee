@@ -1,0 +1,5 @@
+name = Cards
+description = Generate greeting card for a pal
+package = Our First Modules
+core = 7.x
+files[] = cards.module
