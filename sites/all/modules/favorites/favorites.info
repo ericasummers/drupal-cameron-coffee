@@ -3,3 +3,4 @@ description = a collection of favorite things
 package = Our First Modules
 core = 7.x
 files[] = favorites.module
+stylesheets[all][] = theStyle.css
