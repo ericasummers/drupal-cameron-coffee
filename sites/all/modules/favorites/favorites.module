@@ -1,0 +1,30 @@
+<?php
+
+function favorites_menu() {
+  $an_array = array(
+    'movies' => array('The Princess Bride', 'Boogie Nights', 'Dangerous Liaisons'),
+    'books' => array('A Farewell To Arms', 'The Star is My Destination', 'Cloud Atlas'),
+    'songs' => array('Go West', 'West End Girls', 'Anything by Kanye'),
+  );
+
+foreach ($an_array as $things => $values) {
+  $items['favorites/'.$things] = array(
+    'title' => 'My favorite '.$things,
+    'page callback' => 'my_favorites',
+    'page arguments' => array($values),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    );
+  }
+  return $items;
+}
+
+// $favorites = 'justice';
+
+function my_favorites($input) {
+  $output = '';
+  foreach ($input as $key => $value) {
+    $output.= "some space ".$value." .";
+  }
+  return $output;
+}
