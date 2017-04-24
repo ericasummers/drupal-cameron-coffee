@@ -1,0 +1,20 @@
+<?php
+
+  function pets_menu() {
+    $items = array();
+    $items['pet_pics'] = array(
+      'title' => 'pet pics',
+      'page callback' => 'pet_pics',
+      'access callback' => TRUE,
+      'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+  }
+
+  function pet_pics() {
+    return
+      '<p>Hey, check out this crazy guy!</p>
+      <img src="/'.drupal_get_path('module', 'pets').'/kalgar.jpg" alt="Kalgar the puddle-drinker">';
+      // $result = drupal_get_path('module','pets');
+      // return $result;
+  }
