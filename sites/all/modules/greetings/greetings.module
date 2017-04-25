@@ -17,17 +17,79 @@ function greetings_menu() {
 }
 
 function say_hello() {
-    return '<p>How is things going Pie Guy!</p>';
+      // if(in_array('administrator', $account->roles)){
+      //     return '<p>greetings, overlord</p>';
+      // } elseif (in_array('grand poobah', $account->roles)) {
+      //     return '<p>salutations, illustrious one!</p>';
+      // } elseif (in_array('VIP User', $account->roles)) {
+      //     return '<p>hi, very important one.</p>';
+      // } elseif (in_array('authenticated user', $account->roles)) {
+      //     return '<p>How is things going Authenticated Pie Guy!</p>';
+      // } else {
+      //     return '<p>Piss Off, You unauthenticated entity!</p>';
+      // }
+      return '<p>hi friend</p>';
 }
 
 function say_goodbye() {
-    return '<p>Take it easy buddy!</p>';
+  // echo '<pre>';
+  // var_dump($_COOKIE['Drupal_visitor_0']);
+  // echo '</pre>';
+  // exit;
+  // CURRENTLY ALWAYS SAYS GBYE TO INAUTHENTIC USERS
+  global $user;
+  $role = $_COOKIE['Drupal_visitor_0'];
+  if($role = 'administrator'){
+      return '<p>farewell, overlord</p>';
+  } elseif ($role = 'grand poobah') {
+      return '<p>adieu, illustrious one!</p>';
+  } elseif ($role = 'VIP User') {
+      return '<p>byebye, very important one.</p>';
+  } elseif ($role = 'authenticated user') {
+      return '<p>Aufwiedersehen, authenticated Pie Guy!</p>';
+  } else {
+      return '<p>Don\'t let the door hit you on the way out, unauthenticated entity!</p>';
+  }
 }
 
 function greetings_user_login() {
-    $_GET['destination'] = 'greetings';
+  // session_start();
+  // echo '<pre>';
+  // var_dump($_SESSION);
+  // echo '</pre>';
+  // exit;
+  global $user;
+  $role = '';
+  if(in_array('administrator', $user->roles)){
+      drupal_set_message('greetings, overlord');
+      $role = 'administrator';
+  } elseif (in_array('grand poobah', $user->roles)) {
+      drupal_set_message('salutations, illustrious one!');
+      $role = 'grand poobah';
+  } elseif (in_array('VIP User', $user->roles)) {
+      drupal_set_message('hi, very important one.');
+      $role = 'VIP User';
+  } elseif (in_array('authenticated user', $user->roles)) {
+      drupal_set_message('How is things going Authenticated Pie Guy!');
+      $role = 'authenticated user';
+  } else {
+      drupal_set_message('Piss Off, You unauthenticated entity!');
+  }
+  user_cookie_save(array($role));
+  $_GET['destination']='greetings';
 }
 
 function greetings_user_logout() {
-    $_GET['destination'] = 'goodbyes';
+  // if(in_array('administrator', $account->roles)){
+  //     drupal_set_message('farewell, overlord');
+  // } elseif (in_array('grand poobah', $account->roles)) {
+  //     drupal_set_message('adieu, illustrious one!');
+  // } elseif (in_array('VIP User', $account->roles)) {
+  //     drupal_set_message('byebye, very important one.');
+  // } elseif (in_array('authenticated user', $account->roles)) {
+  //     drupal_set_message('Aufwiedersehen, authenticated Pie Guy!');
+  // } else {
+  //     drupal_set_message('Don\'t let the door hit you on the way out, unauthenticated entity!');
+  // }
+  $_GET['destination']='goodbyes';
 }
