@@ -1,0 +1,47 @@
+<?php
+
+function comment_buddy_menu() {
+    $items['create_comment'] = array(
+        'title' => 'Create Comment',
+        'page callback' => 'create_comment_message',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['change_comment'] = array(
+        'title' => 'Change Comment',
+        'page callback' => 'change_comment_message',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['delete_comment'] = array(
+        'title' => 'Delete Comment',
+        'page callback' => 'delete_comment_message',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function create_comment_message(){
+    return '<p>some words</p>';
+}
+
+function change_comment_message(){
+    return '<p>some words</p>';
+}
+
+function delete_comment_message(){
+    return '<p>some words</p>';
+}
+
+function comment_buddy_comment_publish(){
+    drupal_set_message('Hey, you made a comment!');
+};
+
+function comment_buddy_comment_update(){
+    drupal_set_message('Hey, you changed a comment!');
+};
+
+function comment_buddy_comment_delete(){
+    drupal_set_message('Hey, you deleted a comment!');
+};
