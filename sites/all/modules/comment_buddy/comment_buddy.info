@@ -1,0 +1,5 @@
+name = Comment Buddy
+description = displays messages to users whenever they comment
+package = Our First Modules
+core = 7.x
+files[] = comment_buddy.module
