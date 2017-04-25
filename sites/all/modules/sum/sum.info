@@ -1,0 +1,5 @@
+name = Sum
+description = displays the sum of two numbers from a form
+package = Our First Modules
+core = 7.x
+files[] = sum.module
