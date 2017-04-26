@@ -1,0 +1,5 @@
+name = Queen Attacks
+description = A program for testing if you can move a queen to a location
+package = Our First Modules
+core = 7.x
+files[] = queen_attacks.module

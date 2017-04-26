@@ -1,0 +1,117 @@
+<?php
+
+function queen_attacks_menu() {
+    $items['queen_attacks'] = array(
+        'title' => 'Queen Attack Test',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('queen_attacks'),
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => TRUE,
+    );
+    $items['attack_success'] = array(
+        'title' => 'Queen Attack Results',
+        'page callback' => 'attack_result',
+        'type' => MENU_CALLBACK,
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+
+function queen_attacks() {
+  $form['queen_x'] = array(
+    '#title' => 'Queen X Coordinate',
+    '#type' => 'select',
+    '#options' => array(
+        0 => ('A'),
+        1 => ('B'),
+        2 => ('C'),
+        3 => ('D'),
+        4 => ('E'),
+        5 => ('F'),
+        6 => ('G'),
+        7 => ('H'),
+    ),
+  );
+  $form['queen_y'] = array(
+    '#title' => 'Queen Y Coordinate',
+    '#type' => 'select',
+    '#options' => array(
+        0 => ('1'),
+        1 => ('2'),
+        2 => ('3'),
+        3 => ('4'),
+        4 => ('5'),
+        5 => ('6'),
+        6 => ('7'),
+        7 => ('8'),
+    ),
+  );
+  $form['attack_x'] = array(
+    '#title' => 'Attack Location X Coordinate',
+    '#type' => 'select',
+    '#options' => array(
+        0 => ('A'),
+        1 => ('B'),
+        2 => ('C'),
+        3 => ('D'),
+        4 => ('E'),
+        5 => ('F'),
+        6 => ('G'),
+        7 => ('H'),
+    ),
+  );
+  $form['attack_y'] = array(
+    '#title' => 'Attack Location Y Coordinate',
+    '#type' => 'select',
+    '#options' => array(
+        0 => ('1'),
+        1 => ('2'),
+        2 => ('3'),
+        3 => ('4'),
+        4 => ('5'),
+        5 => ('6'),
+        6 => ('7'),
+        7 => ('8'),
+    ),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'AAAATTAAAACK!',
+    );
+  return $form;
+}
+
+function queen_attacks_submit($form, &$form_state) {
+    $queenx = $form_state['values']['queen_x'];
+    $queeny = $form_state['values']['queen_y'];
+    $targetx = $form_state['values']['attack_x'];
+    $targety = $form_state['values']['attack_y'];
+    $can_attack = false;
+    if ($queenx == $targetx && $queeny == $targety){
+        $can_attack = false;
+    } elseif ($queenx == $targetx || $queeny == $targety) {
+        $can_attack = true;
+    } else {
+        if ($queenx > $targetx) {
+            $resultx = $queenx - $targetx;
+        } else $resultx = $targetx - $queenx;
+        if ($queeny > $targety) {
+            $resulty = $queeny - $targety;
+        } else $resulty = $targety - $queeny;
+        if ($resultx == $resulty) {
+            $can_attack = true;
+        } else {
+            $can_attack = false;
+        }
+    }
+    $_SESSION['can_attack'] = $can_attack;
+    $form_state['redirect'] = 'attack_success';
+}
+
+function attack_result() {
+    if($_SESSION['can_attack']){
+        return '<h1>QUEEN CAN ATTACK!</h1>';
+    } else {
+        return '<h1>SAD TROMBONE</h1>';
+    }
+}
